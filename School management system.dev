@@ -1,62 +1,136 @@
-[Project]
-FileName=School management system.dev
-Name=School management system
-Type=1
-Ver=2
-ObjFiles=
-Includes=
-Libs=
-PrivateResource=
-ResourceIncludes=
-MakeIncludes=
-Compiler=
-CppCompiler=
-Linker=
-IsCpp=1
-Icon=
-ExeOutput=
-ObjectOutput=
-LogOutput=
-LogOutputEnabled=0
-OverrideOutput=0
-OverrideOutputName=
-HostApplication=
-UseCustomMakefile=0
-CustomMakefile=
-CommandLine=
-Folders=
-IncludeVersionInfo=0
-SupportXPThemes=0
-CompilerSet=0
-CompilerSettings=0000000000000000000000000
-UnitCount=1
+#include <iostream>
+#include <string>
 
-[VersionInfo]
-Major=1
-Minor=0
-Release=0
-Build=0
-LanguageID=1033
-CharsetID=1252
-CompanyName=
-FileVersion=
-FileDescription=Developed using the Dev-C++ IDE
-InternalName=
-LegalCopyright=
-LegalTrademarks=
-OriginalFilename=
-ProductName=
-ProductVersion=
-AutoIncBuildNr=0
-SyncProduct=1
+struct Teacher {
+    std::string name;
+    double salary;
+    int age;
+    std::string subject;
+};
 
-[Unit1]
-FileName=main 3.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
+struct Course {
+    std::string name;
+    int credits;
+    std::string teacherName;
+};
 
+struct Student {
+    std::string name;
+    int age;
+    std::string major;
+};
+
+int main() {
+    const int numTeachers = 2;
+    Teacher teachers[numTeachers];
+
+    const int numCourses = 2;
+    Course courses[numCourses];
+
+    const int numStudents = 3;
+    Student students[numStudents];
+
+    int choice;
+
+    do {
+        std::cout << "Select an option:\n";
+        std::cout << "1. Add Teacher\n";
+        std::cout << "2. Add Course\n";
+        std::cout << "3. Add Student\n";
+        std::cout << "4. Display Teacher Information\n";
+        std::cout << "5. Display Course Information\n";
+        std::cout << "6. Display Student Information\n";
+        std::cout << "0. Exit\n";
+        std::cout << "Choice: ";
+        std::cin >> choice;
+
+        switch (choice) {
+            case 1:
+                // Add Teacher Information
+                for (int i = 0; i < numTeachers; ++i) {
+                    std::cout << "Enter details for Teacher " << i + 1 << ":\n";
+                    std::cout << "Name: ";
+                    std::cin >> teachers[i].name;
+                    std::cout << "Salary: ";
+                    std::cin >> teachers[i].salary;
+                    std::cout << "Age: ";
+                    std::cin >> teachers[i].age;
+                    std::cout << "Subject: ";
+                    std::cin >> teachers[i].subject;
+                    std::cout << "\n";
+                }
+                break;
+
+            case 2:
+                // Add Course Information
+                for (int i = 0; i < numCourses; ++i) {
+                    std::cout << "Enter details for Course " << i + 1 << ":\n";
+                    std::cout << "Name: ";
+                    std::cin >> courses[i].name;
+                    std::cout << "Credits: ";
+                    std::cin >> courses[i].credits;
+                    std::cout << "Teacher's Name: ";
+                    std::cin >> courses[i].teacherName;
+                    std::cout << "\n";
+                }
+                break;
+
+            case 3:
+                // Add Student Information
+                for (int i = 0; i < numStudents; ++i) {
+                    std::cout << "Enter details for Student " << i + 1 << ":\n";
+                    std::cout << "Name: ";
+                    std::cin >> students[i].name;
+                    std::cout << "Age: ";
+                    std::cin >> students[i].age;
+                    std::cout << "Major: ";
+                    std::cin >> students[i].major;
+                    std::cout << "\n";
+                }
+                break;
+
+            case 4:
+                // Display Teacher Information
+                std::cout << "Teacher Information:\n";
+                for (int i = 0; i < numTeachers; ++i) {
+                    std::cout << "Teacher " << i + 1 << ":\n";
+                    std::cout << "Name: " << teachers[i].name << "\n";
+                    std::cout << "Salary: " << teachers[i].salary << "\n";
+                    std::cout << "Age: " << teachers[i].age << "\n";
+                    std::cout << "Subject: " << teachers[i].subject << "\n\n";
+                }
+                break;
+
+            case 5:
+                // Display Course Information
+                std::cout << "Course Information:\n";
+                for (int i = 0; i < numCourses; ++i) {
+                    std::cout << "Course " << i + 1 << ":\n";
+                    std::cout << "Name: " << courses[i].name << "\n";
+                    std::cout << "Credits: " << courses[i].credits << "\n";
+                    std::cout << "Teacher's Name: " << courses[i].teacherName << "\n\n";
+                }
+                break;
+
+            case 6:
+                // Display Student Information
+                std::cout << "Student Information:\n";
+                for (int i = 0; i < numStudents; ++i) {
+                    std::cout << "Student " << i + 1 << ":\n";
+                    std::cout << "Name: " << students[i].name << "\n";
+                    std::cout << "Age: " << students[i].age << "\n";
+                    std::cout << "Major: " << students[i].major << "\n\n";
+                }
+                break;
+
+            case 0:
+                std::cout << "Exiting...\n";
+                break;
+
+            default:
+                std::cout << "Invalid choice. Please select a valid option.\n";
+        }
+    } while (choice != 0);
+
+    return 0;
+}
